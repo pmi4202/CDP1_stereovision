@@ -9,9 +9,9 @@
 #include <opencv2/imgproc.hpp>
 #include <stdio.h>
 
-#define matrix_width 9
-#define matrix_height 6
-#define squareSize 0.5
+#define matrix_width 8
+#define matrix_height 8
+#define squareSize 1
 
 int main(){
 	//step1
@@ -29,7 +29,7 @@ int main(){
 	cv :: Mat gray_img;
 		
 	cv :: namedWindow("win01", CV_WINDOW_AUTOSIZE);
-	img = cv::imread("chess3.jpg", cv:: IMREAD_COLOR);
+	img = cv::imread("chess4.png", cv:: IMREAD_COLOR);
 	
 	if(img.empty()){
 		std::cout << "[!] You can not see the picture!" << std::endl;
@@ -74,13 +74,14 @@ int main(){
 	
 	
 	//step2
-	cv :: Mat intrinsic = cv :: Mat(3, 3, CV_32FC1);//내부파라미터
-	cv :: Mat distCoeffs = cv :: Mat(1, 5, CV_32FC1); //왜곡상수
+	//cv :: Mat intrinsic = cv :: Mat(3, 3, CV_32FC1);//내부파라미터
+	cv :: Mat intrinsic = cv :: Mat(3, 3, CV_64F);
+	cv :: Mat distCoeffs;
+	distCoeffs = cv :: Mat:: zeros(8, 1, CV_64F);
+	//cv :: Mat distCoeffs = cv :: Mat(1, 5, CV_32FC1); //왜곡상수
 	//cv :: Mat intrinsic, distCoeffs, R, T;
 	std :: vector<cv :: Mat> R, T;
-	
-	//intrinsic.ptr<float>(0)[0] = 1;
-	//intrinsic.ptr<float>(1)[1] = 1;
+
 	
 	cv :: calibrateCamera(object_points, image_points, img.size(), intrinsic, distCoeffs, R, T);
 	
