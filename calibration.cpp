@@ -77,7 +77,7 @@ int main(){
 	//cv :: Mat intrinsic = cv :: Mat(3, 3, CV_32FC1);//내부파라미터
 	cv :: Mat intrinsic = cv :: Mat(3, 3, CV_64F);
 	cv :: Mat distCoeffs;
-	distCoeffs = cv :: Mat:: zeros(8, 1, CV_64F);
+	distCoeffs = cv :: Mat:: zeros(1, 5, CV_64F);
 	//cv :: Mat distCoeffs = cv :: Mat(1, 5, CV_32FC1); //왜곡상수
 	//cv :: Mat intrinsic, distCoeffs, R, T;
 	std :: vector<cv :: Mat> R, T;
